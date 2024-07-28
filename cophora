@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+
+import string
+import random
+import time
+import shutil
+import argparse
+
+charas = string.ascii_lowercase
+channels = ["cophora-forge", "biocophora", "nonToxic"]
+w = shutil.get_terminal_size().columns
+
+def print_header():
+    print("#")
+    print("# Name", end = (" " * 9))
+    print("Version", end = (" " * 8))
+    print("Channel")
+    print("-" * w)
+
+def packnames(pack_n):
+    names = []
+    for i in range(pack_n):
+        l = random.randint(4, 8)
+        s = ""
+        for j in range(l):
+            s += random.choice(charas)
+        names.append(s)
+    names = sorted(names)
+    return(names)
+
+def print_packinfo(name):
+    print(name, end = (" " * (15 - len(name))))
+    v = str(random.randint(0, 3)) + "."
+    a = random.randint(1, 2)
+    if a == 1:
+        v += str(random.randint(0, 5))
+    else:
+        v += str(random.randint(0, 5))
+        v += str(random.randint(0, 9))
+    v += "."
+    v += f"{random.randint(0, 70):02d}"
+    print(v, end = (" " * (15 - len(v))))
+    c = random.choice(channels)
+    print(c, end = (" " * (15 - len(c))), flush = True)
+
+def install_stat():
+    w = shutil.get_terminal_size().columns
+    print("|", end = "", flush = True)
+    time.sleep(0.2)
+    for i in range(w - 47):
+            print("#", end = "", flush = True)
+            a = random.randint(1, 20)
+            decay = random.randint(1, 6)
+            if a == 1:
+                time.sleep(decay / 10)
+            else:
+                pass
+    print("|")
+
+def climacophora(seconds):
+    start = time.time()
+    end = start + seconds
+    print_header()
+    while time.time() <= end:
+        name = ""
+        a = random.randint(4, 8)
+        for j in range(a):
+            name += random.choice(charas)
+        print_packinfo(name)
+        install_stat()
+
+def climacophora2(pack_n):
+    print_header()
+    names = packnames(pack_n)
+    for name in names:
+        print_packinfo(name)
+        install_stat()
+
+parser = argparse.ArgumentParser(description="Installing numerous unnecessary packages")
+parser.add_argument('-s', '--second', action='store_true', help='installing for the specified amount of time')
+parser.add_argument('-l', '--line', action='store_true', help='Installing the specified number of tools')
+parser.add_argument('count', type=int, help='The amount of packages you install')
+args = parser.parse_args()
+
+if args.second and args.line:
+    parser.error('You cannot specify both --second and --line')
+elif not (args.second or args.line):
+    parser.error('Either --second or --line must be specified')
+
+if args.second:
+    climacophora(args.count)
+elif args.line:
+    climacophora2(args.count)
