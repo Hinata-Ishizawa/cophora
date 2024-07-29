@@ -1,4 +1,4 @@
-# cophora
+# cophora: dose nothing, but looks cool
 
 If you are working on your laptop at a café and someone walking by behind you peeks at your computer, they are sure to think you are an amazing engineer who uses a lot of software for large, complex analyses. If only you are using `cophora`!
 
