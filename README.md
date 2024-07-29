@@ -7,7 +7,7 @@ If you are working on your laptop at a café and someone walking by behind you p
 ### Prerequisites
 - Make sure you have installed `git` and `python` on your system.
 
-### Install `laborder4`
+### Install `cophora`
 ```
 git clone git@github.com:Hinata-Ishizawa/cophora.git
 ```
