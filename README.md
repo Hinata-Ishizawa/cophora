@@ -8,7 +8,7 @@ If you are working on your laptop at a café and someone walking by behind you p
 ## Installation
 
 ### Prerequisites
-- Make sure you have installed `git` and `python` on your system.
+Make sure you have installed `git` and `python` on your system.
 
 ### Install `cophora`
 ```
