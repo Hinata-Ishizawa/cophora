@@ -38,5 +38,5 @@ swzywfq        3.2.15         biocophora     |##################################
 ## Specify how many tools to install
 To specify the number of tools, use `-l` or `--line' (this option is default). The default value is 10.
 
-## Specify how long the installation takes
+## Specify how many seconds to install
 Use `-s` or `--second`. The default value is 10.
