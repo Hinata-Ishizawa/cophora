@@ -9,7 +9,7 @@ If you are working on your laptop at a café and someone walking by behind you p
 
 ### Install `laborder4`
 ```
-git clone git@github.com:Hinata-Ishizawa/cophora
+git clone git@github.com:Hinata-Ishizawa/cophora.git
 ```
 
 ## Usage
