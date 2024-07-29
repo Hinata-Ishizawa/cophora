@@ -12,7 +12,7 @@ If you are working on your laptop at a café and someone walking by behind you p
 git clone git@github.com:Hinata-Ishizawa/cophora.git
 ```
 
-## Usage
+## Simple usage
 Move to installed directory and run:
 
 ```sh
@@ -34,3 +34,9 @@ kuntdc         3.3.14         cophora-forge  |##################################
 oqiwijd        3.0.28         biocophora     |##################################################################################################################################|
 swzywfq        3.2.15         biocophora     |##################################################################################################################################|
 ```
+
+## Specify how many tools to install
+To specify the number of tools, use `-l` or `--line' (this option is default). The default value is 10.
+
+## Specify how long the installation takes
+Use `-s` or `--second`. The default value is 10.
