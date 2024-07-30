@@ -1,5 +1,5 @@
 # cophora: makes you look cool while doing nothing
-If you are working on your laptop at a café and someone walking by behind you peeks at your computer, they are sure to think you are an amazing engineer who uses a lot of software for large, complex analyses. If only you are using `cophora`!
+If you are working on your laptop at a café and someone walking by behind you peeks at your computer, they are sure to think you are an amazing engineer who uses a lot of software for large, complex analyses, if only you are using `cophora`!
 
 ### What is cophora?
 `cophora` makes it look as if numerous software tools are being installed, but in reality, nothing is installed.
