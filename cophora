@@ -43,28 +43,16 @@ def print_packinfo(name):
     c = random.choice(channels)
     print(c, end = (" " * (15 - len(c))), flush = True)
 
-def install_stat2():
-    w = shutil.get_terminal_size().columns
-    print("|", end = "", flush = True)
-    time.sleep(0.2)
-    for i in range(w - 47):
-            print("#", end = "", flush = True)
-            a = random.randint(1, 20)
-            decay = random.randint(1, 6)
-            if a == 1:
-                time.sleep(decay / 10)
-            else:
-                pass
-    print("|")
-
 def install_stat():
     w = shutil.get_terminal_size().columns
+    color = '\033[38;5;122m'
+    color_reset = '\033[0m'
     time.sleep(0.2)
     for i in range(1, w - 51):
             print("\033[46G", end = "")
-            print("|" + "#" * i, end = "", flush = True)
+            print(f"{color}|" + "#" * i + f"{color_reset}", end = "", flush = True)
             percentage = i * 100 // (w - 52)
-            print(" " * (w - 52 - i) + "| " +  f"{percentage:3d}%", end = "", flush = True)
+            print(" " * (w - 52 - i) + f"{color}| {color_reset}" +  f"{percentage:3d}%", end = "", flush = True)
             a = random.randint(1, 20)
             decay = random.randint(1, 6)
             if a == 1:
