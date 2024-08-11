@@ -5,10 +5,21 @@ import random
 import time
 import shutil
 import argparse
+from utils import spinner
 
 charas = string.ascii_lowercase
 channels = ["cophora-forge", "biocophora", "nonToxic"]
 w = shutil.get_terminal_size().columns
+before_install = ['Preparing transaction:', 'Verifying transaction:', 'Executing transaction:']
+
+before_install_funcs = []
+for i, b_in in enumerate(before_install, 1):
+    def create_func(b_in):
+        @spinner.runspin(b_in)
+        def loading():
+            time.sleep(random.randint(5, 20))
+        return loading
+    before_install_funcs.append(create_func(b_in))
 
 def print_header():
     print("#")
@@ -17,7 +28,7 @@ def print_header():
     print("Channel")
     print("-" * w)
 
-def packnames(pack_n):
+def packnames(pack_n:int):
     names = []
     for i in range(pack_n):
         l = random.randint(4, 8)
@@ -28,7 +39,7 @@ def packnames(pack_n):
     names = sorted(names)
     return(names)
 
-def print_packinfo(name):
+def print_packinfo(name:str):
     print(name, end = (" " * (15 - len(name))))
     v = str(random.randint(0, 3)) + "."
     a = random.randint(1, 2)
@@ -61,7 +72,7 @@ def install_stat():
                 pass
     print()
 
-def climacophora(seconds):
+def climacophora(seconds:int):
     start = time.time()
     end = start + seconds
     print_header()
@@ -73,7 +84,7 @@ def climacophora(seconds):
         print_packinfo(name)
         install_stat()
 
-def climacophora2(pack_n):
+def climacophora2(pack_n:int):
     print_header()
     names = packnames(pack_n)
     for name in names:
@@ -86,12 +97,16 @@ parser.add_argument('-l', '--line', action='store_true', help='Installing the sp
 parser.add_argument('count', type=int, nargs='?', default=10,  help='The amount of packages you install (default: 10)')
 args = parser.parse_args()
 
-if args.second and args.line:
-    parser.error('You cannot specify both --second and --line')
-elif not (args.second or args.line):
-    args.line = True
+if __name__ == '__main__':
+    if args.second and args.line:
+        parser.error('You cannot specify both --second and --line')
+    elif not (args.second or args.line):
+        args.line = True
 
-if args.second:
-    climacophora(args.count)
-elif args.line:
-    climacophora2(args.count)
+    for func in before_install_funcs:
+        func()
+
+    if args.second:
+        climacophora(args.count)
+    elif args.line:
+        climacophora2(args.count)
