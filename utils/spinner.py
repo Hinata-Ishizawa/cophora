@@ -12,7 +12,7 @@ stop_spin = False
 color = '\033[38;5;122m'
 color_reset = '\033[0m'
 
-def spinner(text, frames):
+def spinner(text, frames, speed):
     global stop_spin
     sys.stdout.write(f'{text} ')
     sys.stdout.flush()
@@ -22,16 +22,16 @@ def spinner(text, frames):
             sys.stdout.write(f'\033[{len(text) + 3}G')
             sys.stdout.write(f'{color}\b{frame}{color_reset}')
             sys.stdout.flush()
-            time.sleep(0.2)
+            time.sleep(speed)
     sys.stdout.write('\r')
 
-def runspin(text = "Loading...", frames = frames):
+def runspin(text = "Loading...", frames = frames, speed = 0.2):
     def _runspin(func):
         @functools.wraps(func)
         def _wrapper(*args, **kwargs):
             global stop_spin
             stop_spin = False
-            loading_thread = threading.Thread(target = spinner, args = (text, frames))
+            loading_thread = threading.Thread(target = spinner, args = (text, frames, speed))
             loading_thread.start()
 
             a = func(*args, **kwargs)
