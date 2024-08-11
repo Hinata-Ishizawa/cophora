@@ -9,15 +9,18 @@ bar_frames = ['[=   ]', '[==  ]', '[=== ]', '[ ===]', '[  ==]', '[   =]']
 ast_frames = ['[*    ]', '[**   ]', '[***  ]', '[**** ]', '[*****]', '[ ****]', '[  ***]', '[   **]', '[    *]']
 
 stop_spin = False
+color = '\033[38;5;122m'
+color_reset = '\033[0m'
 
 def spinner(text, frames):
     global stop_spin
     sys.stdout.write(f'{text} ')
     sys.stdout.flush()
+
     while not stop_spin:
         for frame in frames:
             sys.stdout.write(f'\033[{len(text) + 3}G')
-            sys.stdout.write(f'\b{frame}')
+            sys.stdout.write(f'{color}\b{frame}{color_reset}')
             sys.stdout.flush()
             time.sleep(0.2)
     sys.stdout.write('\r')
@@ -30,15 +33,17 @@ def runspin(text = "Loading...", frames = frames):
             stop_spin = False
             loading_thread = threading.Thread(target = spinner, args = (text, frames))
             loading_thread.start()
-            
+
             a = func(*args, **kwargs)
-            
+
             stop_spin = True
             loading_thread.join()
-            
+
             sys.stdout.write('\033[2K\r')
-            print(text, 'Done!')
-            
+            sys.stdout.write(text)
+            sys.stdout.write(f'{color} Done!{color_reset}')
+            sys.stdout.write('\n')
+
             return a
         return _wrapper
     return _runspin
